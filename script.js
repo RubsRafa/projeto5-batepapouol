@@ -50,8 +50,7 @@ function aparecerStatus () {
 
 function addStatus (item) {
     //imprime todos os participantes do momento; 
-    const participantes = item.data; 
-    console.log (participantes);
+    const participantes = item.data;
     const addUsuarioOnline = document.querySelector ('.ulStatus');
     for (let i = 0; i < participantes.length; i++) {
             addUsuarioOnline.innerHTML += `<li>
@@ -73,8 +72,6 @@ function voltarChat () {
 
 
 
-
-
 function erro (item) {
     if (item.status == "404") {
         alert ('Erro: 404; NOT FOUND')
@@ -83,7 +80,6 @@ function erro (item) {
     }
 }
 
-setTimeout (mandarMensagem, 500);
 function mandarMensagem () {
     //pegar texto digitado dentro do bate papo
     let textoDigitado = document.querySelector ('.barra-escrever').value;
@@ -97,17 +93,20 @@ function mandarMensagem () {
         text: textoDigitado,
         type: "message"
     }
-    console.log (mensagemEnviada)
     //enviar informacoes para o servidor; 
     const enviarMensagem = axios.post ('https://mock-api.driven.com.br/api/v6/uol/messages', mensagemEnviada);
     //se a mensagem for enviada para o servidor, executa a funcao mensagemEnviadaComSucesso
     enviarMensagem.then (mensagemEnviadaComSucesso); 
-    textoDigitado = '';
+    enviarMensagem.catch (mensagemNaoeEnviada); 
 }
 
-function mensagemEnviadaComSucesso (item) {
+function mensagemNaoeEnviada () {
+    alert ('Esse usuário não está mais na sala. A página será atualizada');
+    location.reload();
+}
+
+function mensagemEnviadaComSucesso () {
     console.log ('Mensagem enviada com sucesso');
-    console.log (item)
     //pega de volta todas as mensagens enviadas no bate papo, inclusive a que voce enviou; 
     const mensagemRecebida = axios.get ('https://mock-api.driven.com.br/api/v6/uol/messages');
     //assim que pega as mensagens enviadas (incluindo a sua), executa addMensagemEscrita
@@ -116,7 +115,6 @@ function mensagemEnviadaComSucesso (item) {
 
 setTimeout (addMensagemEscrita, 500);
 function addMensagemEscrita (item) {
-    console.log ('adicionando o texto escrito')
     //item.data é o array que contem todas as informacoes de todas as mensagens; 
     let mensagens = item.data; 
     //array criado apenas para guardar as mensagens dentro dele; 
@@ -164,6 +162,7 @@ function addMensagemEscrita (item) {
         </li>`
         }
     }
+    
 
 }
 
@@ -207,14 +206,11 @@ function pegarConversas (promisse) {
             <div class="texto">
                 <span class="horario">(${listaMensagem.time})</span>
                 <span class="nome">${listaMensagem.from}</span>
-                <span class="para">para</span>
+                <span class="para">reservadamente para</span>
                 <span class="destinatario">${listaMensagem.to}:</span>
                 <span class="mensagem">${listaMensagem.text}</span>
             </div>
         </li>`
         }
     }
-    const elementoQueQueroQueApareca = document.querySelector('.texto');
-    elementoQueQueroQueApareca.scrollIntoView();
-
 }
