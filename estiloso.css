@@ -43,7 +43,6 @@ body {
 .caixa-texto {
     width: 100%;
     min-height: 40px;
-    background-color: #FFFFFF;
     font-family: Roboto;
     padding-left: 8px;
     padding-top: 12px;
@@ -52,6 +51,16 @@ body {
     margin-top: 3px;
     font-size: 14px;
 }
+.type-message {
+    background-color: #FFFFFF; 
+}
+.type-status {
+    background-color: #DCDCDC; 
+}
+.type-private_message {
+    background-color: #F9DEDE;
+}
+
 .texto { 
     width:100%;
     min-height: 10px;
@@ -113,4 +122,40 @@ input {
 }
 .esconder {
     display: none;
+}
+.logo-entrada {
+    z-index: 2;
+    width: 130px;
+    height: 92px;
+    margin-top: 72px;
+    margin-left: 122px;
+}
+.nome-escrever {
+    width: 261px;
+    height: 54px;
+    margin-top: 94px;
+    margin-left: 57px;
+
+}
+.nome-escrever::placeholder {
+    justify-content: center;
+    text-align: center;
+    color: #AEAEAE;
+    font-family: Roboto;
+    font-size: 18px;
+}
+.entrar {
+    width: 109px;
+    height: 45px;
+    border-radius: 9px;
+    background-color: #E7E7E7;
+    color:#696969;
+    font-family: Roboto;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 128px;
+}
+h1 {
+    padding: 12px;
 }

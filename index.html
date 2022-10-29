@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="celular">
-        <div class="conteudo">
+        <div class="conteudo esconder">
         <header class="menu">
             <img class="logo" src="logo 1.png" />
             <ion-icon class="icone-menu" name="people"></ion-icon>
@@ -29,24 +29,20 @@
                     <span class="mensagem">Mensagem</span>
                 </div>
             </li> -->
-
-            <li class="caixa-texto">
-                <div class="texto">
-                    <span class="horario">(00:00:00)</span>
-                    <span class="nome">Fulano</span>
-                    <span class="para">para</span>
-                    <span class="destinatario">Sicrano:</span>
-                    <span class="mensagem">Tem que ver essa daqui e algumas coisinhas a mais</span>
-                </div>
-            </li>
             
         </ul>
 
         <div class="escrever-texto">
             <input class="barra-escrever" type="text" placeholder="Escreva aqui..." />
-            <ion-icon onclick="enviar()" class="enviar" name="paper-plane-outline"></ion-icon> 
+            <ion-icon onclick="mandarMensagem()" class="enviar" name="paper-plane-outline"></ion-icon> 
         </div>
-    </div> <!-- conteudo -->
+    </div> 
+
+    <div class="caixa-entrada">
+        <img class="logo-entrada" src="logo 1.png" />
+        <input class="nome-escrever" type="text" placeholder="Digite seu nome" />
+        <div class="entrar" onclick="entrar()"><h1>Entrar</h1></div>
+    </div>
     </div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
