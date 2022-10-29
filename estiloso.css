@@ -159,3 +159,58 @@ input {
 h1 {
     padding: 12px;
 }
+.statusṔeople {
+    z-index: 3; 
+    width: 259px;
+    height: 667px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 0; 
+    right: 0; 
+}
+.fundostatus {
+    z-index: 3;
+    position: absolute; 
+    top: 0;
+    left:0;
+    width: 116px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+h2 {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000; 
+    text-align: center;
+    padding: 35px;
+}
+.icone-people {
+    width: 23px;
+    height: 23px;
+    position: absolute; 
+    top: 10px;
+    left: 10px;
+}
+.onlinePeople {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    position: absolute;
+    top: 14px;
+    left: 40px;
+}
+.barrinhaOnline {
+    margin: 0 auto;
+    width: calc(100% - 45px);
+    height: 23px;
+    position: relative;
+    padding: 5px;
+    margin-top: 5px;
+}
+.statusGeral {
+    z-index: 2;
+}
+.caixa-entrada {
+    z-index: 3;
+}

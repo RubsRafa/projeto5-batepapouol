@@ -15,9 +15,10 @@
         <div class="conteudo esconder">
         <header class="menu">
             <img class="logo" src="logo 1.png" />
-            <ion-icon class="icone-menu" name="people"></ion-icon>
+            <ion-icon onclick="aparecerStatus(this)" class="icone-menu" name="people"></ion-icon>
         </header>
-
+    
+        <div id="rolar">
         <ul class="chat">
     
             <!--<li class="caixa-texto">
@@ -31,6 +32,7 @@
             </li> -->
             
         </ul>
+    </div>
 
         <div class="escrever-texto">
             <input class="barra-escrever" type="text" placeholder="Escreva aqui..." />
@@ -38,11 +40,32 @@
         </div>
     </div> 
 
+    <div class="statusGeral esconder">
+    <div onclick="voltarChat()" class="fundostatus esconder"></div>
+    <div class="statusṔeople esconder">
+            <h2>Escolha um contato para enviar mensagem:</h2>
+            
+            <ul class="ulStatus">
+            <li>
+                <div class="barrinhaOnline">
+                <ion-icon class="icone-people" name="people"></ion-icon>
+                <span class="onlinePeople">Todos</span>
+                </div>
+            </li>
+
+
+         </ul>
+        </div>
+    </div> <!-- statusGeral-->
+
+
     <div class="caixa-entrada">
         <img class="logo-entrada" src="logo 1.png" />
         <input class="nome-escrever" type="text" placeholder="Digite seu nome" />
-        <div class="entrar" onclick="entrar()"><h1>Entrar</h1></div>
+        <div class="entrar" onclick="entrar(this);"><h1>Entrar</h1></div>
     </div>
+
+
     </div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
