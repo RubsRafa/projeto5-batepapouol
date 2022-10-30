@@ -6,22 +6,24 @@ function entrar() {
     //funcao que recebe o nome, envia para o servidor e salva; 
     //pegar nome do usuario digitado na caixinha INPUT; 
     nomeUsuario = document.querySelector ('.nome-escrever').value;
-    console.log (nomeUsuario);
     usuario = {name: nomeUsuario};
-    console.log (usuario);
 
+
+    const addLoading = document.querySelector ('.divNome');
+    addLoading.innerHTML = '';
+    addLoading.innerHTML += '<div class="c-loader"></div>';
+    const mudarTexto = document.querySelector ('.entrar');
+    mudarTexto.innerHTML = '';
+    mudarTexto.innerHTML += '<h3>Entrando...</h3>';
+    
+    const elementoQueQueroQueApareca = document.querySelector('.scroll');
+    elementoQueQueroQueApareca.scrollIntoView();
 
     setTimeout (enviarNome, 3000);
     manterConexao();
     mensagemEnviadaComSucesso ();
 
-
-    const addRolagem = document.querySelector ('.rolar');
-    addRolagem.innerHTML += '<div class="barra"></div>'; 
-
-
-    const rolamento = document.querySelector('.barra');
-    rolamento.scrollIntoView();
+    setTimeout(() => {
 
 
     // entrada > selecionando o menu de entrada para desaparecer com ele assim que o nome for digitado; 
@@ -34,6 +36,8 @@ function entrar() {
         chat.classList.remove ('esconder')
     }   //caso o nome não seja digitado, nada acontece, mesmo ao clicar no botao; 
         return;
+
+    }, 3000);
 
 }
 
@@ -76,11 +80,15 @@ function addStatus (item) {
         addUsuarioOnline.innerHTML += `<li>
         <div class="barrinhaOnline">
         <ion-icon class="icone-people" name="person-circle"></ion-icon>
-        <span  class="onlinePeople">${participantes[i].name}</span>
+        <div onclick="selecionarPeople(this)" class="onlinePeople">${participantes[i].name}</div>
         </div>
     </li>`  
     }
 }
+
+
+
+
 
 
 function voltarChat () {
@@ -142,7 +150,7 @@ function erroAnonimo () {
 function mandarMensagem () {
     //pegar texto digitado dentro do bate papo
     let textoDigitado = document.querySelector ('.barra-escrever').value;
-    //console.log (textoDigitado)
+    console.log (textoDigitado)
     //para enviar uma mensagem:
     //primeiro: criar objeto com "quem esta escrevendo", "o que esta escrevendo". "para quem esta escrevendo", e "tipo de mensagem"; 
     //criar objeto que sera enviado para o servidor;
@@ -159,6 +167,8 @@ function mandarMensagem () {
     //se a mensagem for enviada para o servidor, executa a funcao mensagemEnviadaComSucesso
     enviarMensagem.then (mensagemEnviadaComSucesso); 
     enviarMensagem.catch (mensagemNaoeEnviada); 
+
+
 }
 
 function mensagemNaoeEnviada () {
@@ -211,7 +221,7 @@ function addMensagemEscrita (item) {
                 <span class="mensagem">${mensagem.text}</span>
             </div>
         </li>`
-        } else if (mensagem.type == 'private_message') {
+        } else if (mensagem.type == 'private_message' && mensagem.to == nomeUsuario) {
             //private_message sao mensagens privadas; enviar mensagem privada mesmo é bonus; basta layout; 
             //diferencas: type = private_message e add no class css referente a cor (type-private_message);
             addElementos.innerHTML += `<li class="caixa-texto type-private_message">
@@ -226,50 +236,3 @@ function addMensagemEscrita (item) {
         }
     }
 }
-
-
-//funcao para adicionar mensagem de outros participantes;
-
-//const promesa = axios.get ('https://mock-api.driven.com.br/api/v6/uol/messages');
-//promesa.then (pegarConversas)
-
-
-//function pegarConversas (promise) {
-//    let mensagens = promise.data; 
-//    let listaMensagem = [];
-    
-//    const addElementos = document.querySelector ('.chat'); 
-//
-//    for (let i = 0; i < mensagens.length; i++) {
-//        listaMensagem = mensagens[i];
-//        if (listaMensagem.type == 'status') {
-//            addElementos.innerHTML += `<li class="caixa-texto type-status">
-//            <div class="texto">
-//            <span class="horario">(${listaMensagem.time})</span>
-//            <span class="nome">${listaMensagem.from}</span>
-//            <span class="mensagem">${listaMensagem.text}</span>
-//            </div>
-//            </li>`
-//        } else if (listaMensagem.type == 'message') {
-//            addElementos.innerHTML += `<li class="caixa-texto type-message">
-//            <div class="texto">
-//                <span class="horario">(${listaMensagem.time})</span>
-//                <span class="nome">${listaMensagem.from}</span>
-//                <span class="para">para</span>
-//                <span class="destinatario">${listaMensagem.to}:</span>
-//                <span class="mensagem">${listaMensagem.text}</span>
-//            </div>
-//        </li>`
-//        } else if (listaMensagem.type == 'private_message') {
-//            addElementos.innerHTML += `<li class="caixa-texto type-private_message">
-//            <div class="texto">
-//                <span class="horario">(${listaMensagem.time})</span>
-//                <span class="nome">${listaMensagem.from}</span>
-//                <span class="para">reservadamente para</span>
-//                <span class="destinatario">${listaMensagem.to}:</span>
-//                <span class="mensagem">${listaMensagem.text}</span>
-//            </div>
-//        </li>`
-//        }
-//    }
-//}

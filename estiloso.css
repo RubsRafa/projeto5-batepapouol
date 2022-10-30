@@ -212,6 +212,7 @@ h2 {
     position: relative;
     padding: 5px;
     margin-top: 5px;
+    background-color: #AEAEAE;
 }
 .statusGeral {
     z-index: 2;
@@ -222,15 +223,47 @@ h2 {
     z-index: 3;
     background-color: #FFFFFF;
 }
-.barra {
+.scroll {
     position: absolute;
     bottom: 0; 
     left: 0;
-    width: 100px;
-    height: 1px;
-    background-color: #ff0000;
 }
 .rolar {
     position: relative;
     height: calc(100% + 90px);
 }
+
+
+h3 {
+    padding: 14px;
+}
+.selecionar {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color:#28BB25;
+}
+
+
+
+
+
+
+
+.c-loader {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #51d4db;
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+  }
+  
+  @keyframes is-rotating {
+    to {
+      transform: rotate(1turn);
+    }
+  }
