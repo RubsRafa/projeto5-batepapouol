@@ -1,4 +1,6 @@
-
+body {
+    background-color: #F3F3F3;
+}
 .menu {
     z-index: 1;
     width: 100%;
@@ -119,7 +121,6 @@ input {
 .divlogo {
     width: 100%;
     height: 92px;
-    margin-top: 72px;
     text-align: center;
 }
 
@@ -127,12 +128,12 @@ input {
     z-index: 2;
     width: 130px;
     height: 92px;
-    margin: 0 auto;
+    margin: 70px auto;
 }
 .nome-escrever {
     width: 261px;
     height: 54px;
-    margin: 0 auto;
+    margin: 72px auto;
 
 }
 .nome-escrever::placeholder {
@@ -157,7 +158,7 @@ input {
     font-family: Roboto;
     font-size: 18px;
     text-align: center;
-    margin: 15px auto;
+    margin: 70px auto;
 }
 h1 {
     padding: 12px;
@@ -170,10 +171,11 @@ h1 {
     position: fixed;
     top: 0; 
     right: 0; 
+    overflow-y: scroll;
 }
 .fundostatus {
     z-index: 3;
-    position: absolute; 
+    position: fixed; 
     top: 0;
     left:0;
     width: 100%;
@@ -215,7 +217,10 @@ h2 {
     z-index: 2;
 }
 .caixa-entrada {
+    width: 100%;
+    height: 667px;
     z-index: 3;
+    background-color: #FFFFFF;
 }
 .barra {
     position: absolute;
@@ -223,7 +228,7 @@ h2 {
     left: 0;
     width: 100px;
     height: 1px;
-    background-color: #F3F3F3;
+    background-color: #ff0000;
 }
 .rolar {
     position: relative;
