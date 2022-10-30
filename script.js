@@ -21,13 +21,38 @@ function entrar() {
 
     //usuario criado para ser enviado ao servidor; somente com o nome; 
     usuario = {name: nomeUsuario}
-    //axios.post para enviar o conteudo do usuario para o servidor; 
-    const enviar = axios.post ('https://mock-api.driven.com.br/api/v6/uol/participants', {name: nomeUsuario});
-    //quando enviar o usuario p/ API, executar receberUsuario; 
-    enviar.then (receberUsuario); 
-    //se der ruim, a funcao erro sera executada; 
-    enviar.catch (erro);
 
+    const elementoQueQueroQueApareca = document.querySelector('.barra');
+elementoQueQueroQueApareca.scrollIntoView();
+}
+
+
+function manterConexao () {
+    const statusOnline = axios.post ('https://mock-api.driven.com.br/api/v6/uol/status', {name: nomeUsuario});
+    statusOnline.then (deuCerto); 
+    statusOnline.catch (deuErrado);
+    setTimeout (manterConexao, 500);
+
+}
+
+function deuCerto (item) {
+    console.log ('Deu certo')
+    console.log (item)
+}
+function deuErrado (item) {
+    console.log ('Este usuário não está mais conectado. A página será atualizada.');
+    console.log (item)
+}
+
+
+
+function enviarNome () {
+     //axios.post para enviar o conteudo do usuario para o servidor; 
+     const enviar = axios.post ('https://mock-api.driven.com.br/api/v6/uol/participants', {name: nomeUsuario});
+     //quando enviar o usuario p/ API, executar receberUsuario; 
+     enviar.then (receberUsuario); 
+     //se der ruim, a funcao erro sera executada; 
+     enviar.catch (erro);
 }
 
 
@@ -51,6 +76,7 @@ function aparecerStatus () {
 function addStatus (item) {
     //imprime todos os participantes do momento; 
     const participantes = item.data;
+    console.log (participantes);
     const addUsuarioOnline = document.querySelector ('.ulStatus');
     for (let i = 0; i < participantes.length; i++) {
             addUsuarioOnline.innerHTML += `<li>
@@ -83,7 +109,6 @@ function erro (item) {
 function mandarMensagem () {
     //pegar texto digitado dentro do bate papo
     let textoDigitado = document.querySelector ('.barra-escrever').value;
-
     //para enviar uma mensagem:
     //primeiro: criar objeto com "quem esta escrevendo", "o que esta escrevendo". "para quem esta escrevendo", e "tipo de mensagem"; 
     //criar objeto que sera enviado para o servidor;
@@ -93,6 +118,7 @@ function mandarMensagem () {
         text: textoDigitado,
         type: "message"
     }
+    console.log (mensagemEnviada)
     //enviar informacoes para o servidor; 
     const enviarMensagem = axios.post ('https://mock-api.driven.com.br/api/v6/uol/messages', mensagemEnviada);
     //se a mensagem for enviada para o servidor, executa a funcao mensagemEnviadaComSucesso
@@ -101,11 +127,12 @@ function mandarMensagem () {
 }
 
 function mensagemNaoeEnviada () {
-    alert ('Esse usuário não está mais na sala. A página será atualizada');
-    location.reload();
+    alert ('Mensagem não foi enviada. A página será atualizada');
+    //location.reload();
 }
 
-function mensagemEnviadaComSucesso () {
+function mensagemEnviadaComSucesso (item) {
+    console.log (item)
     console.log ('Mensagem enviada com sucesso');
     //pega de volta todas as mensagens enviadas no bate papo, inclusive a que voce enviou; 
     const mensagemRecebida = axios.get ('https://mock-api.driven.com.br/api/v6/uol/messages');

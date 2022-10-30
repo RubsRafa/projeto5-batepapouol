@@ -10,29 +10,19 @@
     <link rel="stylesheet" href="estiloso.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="celular">
-        <div class="conteudo esconder">
+<body>  
+    <div class="conteudo esconder">
         <header class="menu">
             <img class="logo" src="logo 1.png" />
             <ion-icon onclick="aparecerStatus(this)" class="icone-menu" name="people"></ion-icon>
         </header>
     
-    <div class="rolar">
+
+        <div class="rolar">
         <ul class="chat">
-    
-            <!--<li class="caixa-texto">
-                <div class="texto">
-                    <span class="horario">(00:00:00)</span>
-                    <span class="nome">Fulano</span>
-                    <span class="para">para</span>
-                    <span class="destinatario">Sicrano:</span>
-                    <span class="mensagem">Mensagem</span>
-                </div>
-            </li> -->
         </ul>
         <div class="barra"></div>
-    </div>
+    </div> 
 
 
         <div class="escrever-texto">
@@ -57,17 +47,14 @@
 
          </ul>
         </div>
-    </div> <!-- statusGeral-->
-
+    </div> 
 
     <div class="caixa-entrada">
-        <img class="logo-entrada" src="logo 1.png" />
-        <input class="nome-escrever" type="text" placeholder="Digite seu nome" />
+        <div class="divlogo"><img class="logo-entrada" src="logo 1.png" /></div>
+        <div class="divNome"><input class="nome-escrever" type="text" placeholder="Digite seu nome" /></div>
         <div class="entrar" onclick="entrar(this);"><h1>Entrar</h1></div>
     </div>
 
-
-    </div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>

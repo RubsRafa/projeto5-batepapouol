@@ -1,21 +1,10 @@
 
-body {
-    background-color: rgb(230, 230, 230);
-}
-.celular {
-    width: 375px;
-    height: 667px;
-    background-color: #F3F3F3;
-    margin: 10px auto;
-    position: relative;
-    overflow: hidden;
-}
 .menu {
     z-index: 1;
     width: 100%;
     height: 80px;
     background-color:#FFFFFF;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
@@ -27,22 +16,22 @@ body {
     margin-left: 22px;
 }
 .icone-menu {
+    z-index: 2;
     width: 50px;
     height: 40px;
-    margin-bottom: 8px;
-    margin-left: 210px;
+    position: fixed;
+    top: 18px;
+    right: 22px;
 }
 .chat {
     margin-top: 103px;
     width: 100%;
-    height: 470px;
-    overflow-y: scroll;
-    padding-bottom: 20px;
+    height: calc(100% - 100px);
+    background-color: #F3F3F3;
+    overflow: hidden;
+    margin-bottom: 100px;
 }
 
-.rolar {
-    position: relative;
-}
 .caixa-texto {
     width: 100%;
     min-height: 40px;
@@ -81,10 +70,9 @@ body {
     color: #000000;
     font-weight: 400;
 }
-
 .escrever-texto {
-    z-index: 1;
-    position: absolute;
+    z-index: 2;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -93,7 +81,7 @@ body {
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 .barra-escrever {
-    width: 300px;
+    width: 430px;
     height: 100%;
     box-shadow: 0 0 0 0;
     border: none;
@@ -110,6 +98,7 @@ body {
     color: #000000;
     text-align: start;
 }
+
 input {
     font-family: Roboto;
     font-size: 18px;
@@ -119,33 +108,45 @@ input {
 .enviar {
     width: 30px;
     height: 30px;
-    position: absolute;
+    position: fixed;
     bottom: 22px;
     right: 22px;
 }
+
 .esconder {
     display: none;
 }
+.divlogo {
+    width: 100%;
+    height: 92px;
+    margin-top: 72px;
+    text-align: center;
+}
+
 .logo-entrada {
     z-index: 2;
     width: 130px;
     height: 92px;
-    margin-top: 72px;
-    margin-left: 122px;
+    margin: 0 auto;
 }
 .nome-escrever {
     width: 261px;
     height: 54px;
-    margin-top: 94px;
-    margin-left: 57px;
+    margin: 0 auto;
 
 }
 .nome-escrever::placeholder {
-    justify-content: center;
     text-align: center;
     color: #AEAEAE;
     font-family: Roboto;
     font-size: 18px;
+}
+.divNome {
+    width: 100%;
+    height: 92px;
+    margin-top: 94px;
+    text-align: center;
+
 }
 .entrar {
     width: 109px;
@@ -156,8 +157,7 @@ input {
     font-family: Roboto;
     font-size: 18px;
     text-align: center;
-    margin-top: 15px;
-    margin-left: 128px;
+    margin: 15px auto;
 }
 h1 {
     padding: 12px;
@@ -165,9 +165,9 @@ h1 {
 .statusṔeople {
     z-index: 3; 
     width: 259px;
-    height: 667px;
+    height: 100%;
     background-color: #FFFFFF;
-    position: absolute;
+    position: fixed;
     top: 0; 
     right: 0; 
 }
@@ -176,7 +176,7 @@ h1 {
     position: absolute; 
     top: 0;
     left:0;
-    width: 116px;
+    width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
 }
@@ -223,5 +223,9 @@ h2 {
     left: 0;
     width: 100px;
     height: 1px;
-    background-color: #000000;
+    background-color: #F3F3F3;
+}
+.rolar {
+    position: relative;
+    height: calc(100% + 90px);
 }
