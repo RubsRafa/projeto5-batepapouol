@@ -38,7 +38,7 @@ function entrar() {
     setTimeout(() => {
 
 
-    // entrada > selecionando o menu de entrada para desaparecer com ele assim que o nome for digitado; 
+    // entrada > selecionando o menu de entrada para desaparecer com ele ao clicar em 'entrar';; 
     const entrada = document.querySelector ('.caixa-entrada');
     //aparecer com o conteudo do bate-papo ao clicar em 'entrar';
     const chat = document.querySelector ('.conteudo');    
@@ -66,7 +66,7 @@ function enviarNome () {
 function receberUsuario () {
     //essa funcao recebe todo o conteudo(participantes) dentro do servidor, incluindo o enviado (usuario); 
     const receber = axios.get ('https://mock-api.driven.com.br/api/v6/uol/participants');
-    //quando voltar com todos os participantes, executa receberUsuario2; 
+    //quando voltar com todos os participantes, executa addStatus; 
     receber.then (addStatus);
     receber.catch (erroAnonimo);
     setTimeout (receberUsuario, 3000);
@@ -82,10 +82,8 @@ function aparecerStatus () {
 }
 
 function addStatus (item) {
-    //console.log (item)
     //imprime todos os participantes do momento; 
     const participantes = item.data;
-    //console.log (participantes);
     const addUsuarioOnline = document.querySelector ('.ulStatus');
     addUsuarioOnline.innerHTML = '';
     for (let i = 0; i < participantes.length; i++) {
@@ -104,15 +102,13 @@ function addStatus (item) {
 
 let pessoaReservado = 'Todos'
 function selecionarPeople (pessoaSelecionada) {
-    console.log (pessoaSelecionada)
-    const selecaoPessoa = document.querySelector ('.barrinhaOnline .setinha');
+    const selecaoPessoa = pessoaSelecionada.querySelector ('.setinha');
     if (selecaoPessoa !== null) {
         selecaoPessoa.classList.add ('esconder');
     }
     const mostrarSeta = pessoaSelecionada.querySelector ('.setinha'); 
     mostrarSeta.classList.toggle ('esconder');
     pessoaReservado = pessoaSelecionada.querySelector ('.onlinePeople').innerHTML; 
-    console.log (pessoaReservado);
 
 
     const addInfoReservada = document.querySelector ('.escrever-texto');
@@ -175,10 +171,10 @@ function manterConexao () {
 }
 
 function deuCerto () {
-    //console.log ('Você está online.')
+    console.log ('Você está online.')
 }
 function deuErrado () {
-    console.log ('Este usuário não está mais conectado. A página será atualizada.');
+    console.log ('Ou este usuário não está mais conectado. Ou a página não terminou completamente de carregar. Aguarde alguns segundos');
 }
 
 
@@ -188,6 +184,17 @@ function erroAnonimo () {
     alert ('Ops! Algo deu errado e infelizmente não sabemos o que é. A página será atualizada.');
     location.reload();
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -212,7 +219,7 @@ function mandarMensagem () {
     } else {
         mensagemEnviada = {
             from: nomeUsuario,
-            to: 'Todos',
+            to: pessoaReservado,
             text: textoDigitado,
             type: "message"
         }
