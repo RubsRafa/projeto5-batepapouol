@@ -1,6 +1,19 @@
+setInterval(() => {
+    const elementoQueQueroQueApareca = document.querySelector('.scroll');
+    elementoQueQueroQueApareca.scrollIntoView();
+    
+}, 200);
+
+
+
+
 
 let nomeUsuario; // nome do usuario inserido no menu de entrada; 
 let usuario; //objeto usuario com somente o nome > usuario = {name: nomeUsuario}
+
+
+
+
 
 function entrar() {
     //funcao que recebe o nome, envia para o servidor e salva; 
@@ -16,9 +29,6 @@ function entrar() {
     mudarTexto.innerHTML = '';
     mudarTexto.innerHTML += '<h3>Entrando...</h3>';
     
-    const elementoQueQueroQueApareca = document.querySelector('.scroll');
-    elementoQueQueroQueApareca.scrollIntoView();
-
     setTimeout (enviarNome, 3000);
     manterConexao();
     mensagemEnviadaComSucesso ();
