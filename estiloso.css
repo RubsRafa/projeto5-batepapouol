@@ -212,7 +212,6 @@ h2 {
     position: relative;
     padding: 5px;
     margin-top: 5px;
-    background-color: #AEAEAE;
 }
 .statusGeral {
     z-index: 2;
@@ -237,7 +236,7 @@ h2 {
 h3 {
     padding: 14px;
 }
-.selecionar {
+.setinha {
     width: 30px;
     height: 30px;
     position: absolute;
@@ -246,7 +245,15 @@ h3 {
     color:#28BB25;
 }
 
-
+.reservado {
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: italic;
+    color: #505050;
+    position: fixed;
+    bottom: 10px;
+    left: 15px;
+}
 
 
 

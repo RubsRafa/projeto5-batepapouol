@@ -1,8 +1,8 @@
 setInterval(() => {
     const elementoQueQueroQueApareca = document.querySelector('.scroll');
-    elementoQueQueroQueApareca.scrollIntoView();
-    
-}, 200);
+elementoQueQueroQueApareca.scrollIntoView();
+}, 1000);
+
 
 
 
@@ -21,14 +21,16 @@ function entrar() {
     nomeUsuario = document.querySelector ('.nome-escrever').value;
     usuario = {name: nomeUsuario};
 
+    if (nomeUsuario !== '') {
+        const addLoading = document.querySelector ('.divNome');
+        addLoading.innerHTML = '';
+        addLoading.innerHTML += '<div class="c-loader"></div>';
+        const mudarTexto = document.querySelector ('.entrar');
+        mudarTexto.innerHTML = '';
+        mudarTexto.innerHTML += '<h3>Entrando...</h3>';
+        
+    }
 
-    const addLoading = document.querySelector ('.divNome');
-    addLoading.innerHTML = '';
-    addLoading.innerHTML += '<div class="c-loader"></div>';
-    const mudarTexto = document.querySelector ('.entrar');
-    mudarTexto.innerHTML = '';
-    mudarTexto.innerHTML += '<h3>Entrando...</h3>';
-    
     setTimeout (enviarNome, 3000);
     manterConexao();
     mensagemEnviadaComSucesso ();
@@ -88,13 +90,52 @@ function addStatus (item) {
     addUsuarioOnline.innerHTML = '';
     for (let i = 0; i < participantes.length; i++) {
         addUsuarioOnline.innerHTML += `<li>
-        <div class="barrinhaOnline">
+        <div class="barrinhaOnline" onclick="selecionarPeople(this)">
         <ion-icon class="icone-people" name="person-circle"></ion-icon>
-        <div onclick="selecionarPeople(this)" class="onlinePeople">${participantes[i].name}</div>
+        <div class="onlinePeople">${participantes[i].name}</div>
+        <ion-icon class="setinha esconder" name="checkmark-sharp"></ion-icon>
         </div>
     </li>`  
     }
 }
+
+
+
+
+let pessoaReservado = 'Todos'
+function selecionarPeople (pessoaSelecionada) {
+    console.log (pessoaSelecionada)
+    const selecaoPessoa = document.querySelector ('.barrinhaOnline .setinha');
+    if (selecaoPessoa !== null) {
+        selecaoPessoa.classList.add ('esconder');
+    }
+    const mostrarSeta = pessoaSelecionada.querySelector ('.setinha'); 
+    mostrarSeta.classList.toggle ('esconder');
+    pessoaReservado = pessoaSelecionada.querySelector ('.onlinePeople').innerHTML; 
+    console.log (pessoaReservado);
+
+
+    const addInfoReservada = document.querySelector ('.escrever-texto');
+    addInfoReservada.innerHTML = `<input class="barra-escrever" type="text" placeholder="Escreva aqui..." />
+    <ion-icon onclick="mandarMensagem()" class="enviar" name="paper-plane-outline"></ion-icon>`;
+    if (pessoaReservado !== null) {
+        setTimeout(() => {
+            const status = document.querySelector ('.statusGeral');
+        status.classList.add ('esconder');
+        const fundostatus = document.querySelector ('.fundostatus');
+        fundostatus.classList.add ('esconder');
+        const statusṔeople = document.querySelector ('.statusṔeople');
+        statusṔeople.classList.add ('esconder');
+        }, 1000);
+
+        addInfoReservada.innerHTML += `<span class="reservado">Enviando para ${pessoaReservado} (reservadamente)</span>`;
+    } 
+}
+
+
+
+
+
 
 
 
@@ -133,13 +174,11 @@ function manterConexao () {
 
 }
 
-function deuCerto (item) {
-    console.log ('Deu certo! Você está online.')
-    //console.log (item)
+function deuCerto () {
+    //console.log ('Você está online.')
 }
-function deuErrado (item) {
+function deuErrado () {
     console.log ('Este usuário não está mais conectado. A página será atualizada.');
-    //console.log (item)
 }
 
 
@@ -147,31 +186,44 @@ function deuErrado (item) {
 
 function erroAnonimo () {
     alert ('Ops! Algo deu errado e infelizmente não sabemos o que é. A página será atualizada.');
-    //location.reload();
+    location.reload();
 }
 
 
 
 
 
-
+let mensagemEnviada;
 
 
 function mandarMensagem () {
     //pegar texto digitado dentro do bate papo
     let textoDigitado = document.querySelector ('.barra-escrever').value;
     console.log (textoDigitado)
+    
+
+    if (pessoaReservado !== 'Todos') {
+        mensagemEnviada = {
+            from: nomeUsuario,
+            to: pessoaReservado,
+            text: textoDigitado,
+            type: "private_message"
+        }
+    } else {
+        mensagemEnviada = {
+            from: nomeUsuario,
+            to: 'Todos',
+            text: textoDigitado,
+            type: "message"
+        }
+    }
+    
     //para enviar uma mensagem:
     //primeiro: criar objeto com "quem esta escrevendo", "o que esta escrevendo". "para quem esta escrevendo", e "tipo de mensagem"; 
     //criar objeto que sera enviado para o servidor;
-    let mensagemEnviada = {
-        from: nomeUsuario,
-        to: 'Todos',
-        text: textoDigitado,
-        type: "message"
-    }
 
-    //console.log (mensagemEnviada)
+
+    console.log (mensagemEnviada)
     //enviar informacoes para o servidor; 
     const enviarMensagem = axios.post ('https://mock-api.driven.com.br/api/v6/uol/messages', mensagemEnviada);
     //se a mensagem for enviada para o servidor, executa a funcao mensagemEnviadaComSucesso
@@ -183,12 +235,10 @@ function mandarMensagem () {
 
 function mensagemNaoeEnviada () {
     alert ('Mensagem não foi enviada. A página será atualizada');
-    //location.reload();
+    location.reload();
 }
 
 function mensagemEnviadaComSucesso () {
-    //console.log (item)
-    console.log ('Mensagem enviada com sucesso');
     //pega de volta todas as mensagens enviadas no bate papo, inclusive a que voce enviou; 
     const mensagemRecebida = axios.get ('https://mock-api.driven.com.br/api/v6/uol/messages');
     //assim que pega as mensagens enviadas (incluindo a sua), executa addMensagemEscrita
@@ -231,7 +281,7 @@ function addMensagemEscrita (item) {
                 <span class="mensagem">${mensagem.text}</span>
             </div>
         </li>`
-        } else if (mensagem.type == 'private_message' && mensagem.to == nomeUsuario) {
+        } else if (mensagem.type == 'private_message' && (mensagem.to == nomeUsuario || mensagem.from == nomeUsuario)) {
             //private_message sao mensagens privadas; enviar mensagem privada mesmo é bonus; basta layout; 
             //diferencas: type = private_message e add no class css referente a cor (type-private_message);
             addElementos.innerHTML += `<li class="caixa-texto type-private_message">
