@@ -87,11 +87,11 @@ function addStatus (item) {
     const addUsuarioOnline = document.querySelector ('.ulStatus');
     addUsuarioOnline.innerHTML = '';
     for (let i = 0; i < participantes.length; i++) {
-        addUsuarioOnline.innerHTML += `<li>
+        addUsuarioOnline.innerHTML += `<li data-test="participant">
         <div class="barrinhaOnline" onclick="selecionarPeople(this)">
         <ion-icon class="icone-people" name="person-circle"></ion-icon>
         <div class="onlinePeople">${participantes[i].name}</div>
-        <ion-icon class="setinha esconder" name="checkmark-sharp"></ion-icon>
+        <ion-icon data-test="check" class="setinha esconder" name="checkmark-sharp"></ion-icon>
         </div>
     </li>`  
     }
@@ -124,7 +124,7 @@ function selecionarPeople (pessoaSelecionada) {
         statusṔeople.classList.add ('esconder');
         }, 1000);
 
-        addInfoReservada.innerHTML += `<span class="reservado">Enviando para ${pessoaReservado} (reservadamente)</span>`;
+        addInfoReservada.innerHTML += `<span data-test="recipient" class="reservado">Enviando para ${pessoaReservado} (reservadamente)</span>`;
     } 
 }
 
@@ -269,7 +269,7 @@ function addMensagemEscrita (item) {
         if (mensagem.type == 'status') {
             //status sao mensagens de entrada ou saida de participantes; 
             //diferencas: type = status e add no class css referente a cor (type-status); 
-            addElementos.innerHTML += `<li class="caixa-texto type-status">
+            addElementos.innerHTML += `<li data-text="message" class="caixa-texto type-status">
             <div class="texto">
             <span class="horario">(${mensagem.time})</span>
             <span class="nome">${mensagem.from}</span>
@@ -279,7 +279,7 @@ function addMensagemEscrita (item) {
         } else if (mensagem.type == 'message') {
             //message sao mensagens de bate papo para todos verem; 
             //diferencas: type = message e add no class css referente a cor (type-message); 
-            addElementos.innerHTML += `<li class="caixa-texto type-message">
+            addElementos.innerHTML += `<li data-text="message" class="caixa-texto type-message">
             <div class="texto">
                 <span class="horario">(${mensagem.time})</span>
                 <span class="nome">${mensagem.from}</span>
@@ -291,7 +291,7 @@ function addMensagemEscrita (item) {
         } else if (mensagem.type == 'private_message' && (mensagem.to == nomeUsuario || mensagem.from == nomeUsuario)) {
             //private_message sao mensagens privadas; enviar mensagem privada mesmo é bonus; basta layout; 
             //diferencas: type = private_message e add no class css referente a cor (type-private_message);
-            addElementos.innerHTML += `<li class="caixa-texto type-private_message">
+            addElementos.innerHTML += `<li data-text="message" class="caixa-texto type-private_message">
             <div class="texto">
                 <span class="horario">(${mensagem.time})</span>
                 <span class="nome">${mensagem.from}</span>

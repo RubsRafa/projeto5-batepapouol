@@ -14,7 +14,7 @@
     <div class="conteudo esconder">
         <header class="menu">
             <img class="logo" src="logo 1.png" />
-            <ion-icon onclick="aparecerStatus(this)" class="icone-menu" name="people"></ion-icon>
+            <ion-icon data-test="open-participants" onclick="aparecerStatus(this)" class="icone-menu" name="people"></ion-icon>
         </header>
     
 
@@ -27,8 +27,8 @@
 
 
         <div class="escrever-texto">
-            <input class="barra-escrever" type="text" placeholder="Escreva aqui..." />
-            <ion-icon onclick="mandarMensagem()" class="enviar" name="paper-plane-outline"></ion-icon> 
+            <input data-test="input-message" class="barra-escrever" type="text" placeholder="Escreva aqui..." />
+            <ion-icon data-text="send-message" onclick="mandarMensagem()" class="enviar" name="paper-plane-outline"></ion-icon> 
         </div>
     </div> 
 
@@ -38,7 +38,7 @@
             <h2>Escolha um contato para enviar mensagem:</h2>
             
             
-            <li>
+            <li data-test="all">
                 <div class="barrinhaOnline" onclick="selecionarPeople(this)">
                 <ion-icon class="icone-people" name="people"></ion-icon>
                 <span class="onlinePeople">Todos</span>
@@ -57,8 +57,8 @@
 
     <div class="caixa-entrada">
         <div class="divlogo"><img class="logo-entrada" src="logo 1.png" /></div>
-        <div class="divNome"><input data-identifier="enter-name" class="nome-escrever" type="text" placeholder="Digite seu nome" /></div>
-        <div class="entrar" onclick="entrar(this);" data-identifier="start"><h1>Entrar</h1></div>
+        <div class="divNome"><input data-test="input-name" class="nome-escrever" type="text" placeholder="Digite seu nome" /></div>
+        <div class="entrar" onclick="entrar(this);" data-test="send-name"><h1>Entrar</h1></div>
     </div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
